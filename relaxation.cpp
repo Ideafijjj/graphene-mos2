@@ -20,29 +20,36 @@ void Relaxation::setSteps(int steps) { this->_steps = steps; }
 Matrix Relaxation::setInitialConditions(Matrix &m, int N) {
   for (int ii = 0; ii < N; ++ii) {
     for (int jj = 0; jj < N; ++jj) {
-      m[ii * N + jj] = 0.0;
+      m[ii * N + jj] = -(1.6 * std::pow(10,-19) * 8.7 * std::pow(10,12))
+          / (6.9 * 8.85 *pow(10,-12)); //graphene
     }
   }
+  //for (int ii = 0; ii < N; ++ii) {
+    //for (int jj = 0; jj < N; ++jj) {
+      //m[ii * N + jj] = 0; //vacuum
+    //}
+  //}
   return m;
 }
 
 Matrix Relaxation::setBoundaryConditions(Matrix &m, int N) {
   int ii = 0, jj = 0;
+
   ii = 0;
   for (jj = 0; jj < N; ++jj)
-    m[ii * N + jj] = 100;
+    m[ii * N + jj] = 0.0;
 
   ii = N - 1;
   for (jj = 0; jj < N; ++jj)
-    m[ii * N + jj] = 0;
+    m[ii * N + jj] = 0.0;
 
   jj = 0;
   for (ii = 1; ii < N - 1; ++ii)
-    m[ii * N + jj] = 0;
+    m[ii * N + jj] = 95.5;
 
   jj = N - 1;
   for (ii = 1; ii < N - 1; ++ii)
-    m[ii * N + jj] = 0;
+    m[ii * N + jj] = 1.0;
   return m;
 }
 

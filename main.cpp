@@ -10,8 +10,13 @@ const int STEPS = 200;
 
 typedef std::vector<double> Matrix; // Alias
 
+/*
+Grahpene layer thickness 0,341 nm
+Permittivity 6.9 \epsilon_0
+Carrier density ---> 10^{12} m^{-2}
+*/
 int main(void) {
-  int N = 100;
+  //int N = 100;
   Relaxation relax_method(STEPS);
   Matrix data(N * N);
 
