@@ -18,17 +18,17 @@ int Relaxation::getSteps() { return this->_steps; }
 void Relaxation::setSteps(int steps) { this->_steps = steps; }
 
 Matrix Relaxation::setInitialConditions(Matrix &m, int N) {
-  for (int ii = 0; ii < N; ++ii) {
-    for (int jj = 0; jj < N; ++jj) {
-      m[ii * N + jj] = -(1.6 * std::pow(10,-19) * 8.7 * std::pow(10,12))
-          / (6.9 * 8.85 *pow(10,-12)); //graphene
-    }
-  }
   //for (int ii = 0; ii < N; ++ii) {
     //for (int jj = 0; jj < N; ++jj) {
-      //m[ii * N + jj] = 0; //vacuum
+      //m[ii * N + jj] = -(1.6 * std::pow(10,-19) * 8.7 * std::pow(10,12))
+          /// (6.9 * 8.85 *pow(10,-12)); //graphene
     //}
   //}
+  for (int ii = 0; ii < N; ++ii) {
+    for (int jj = 0; jj < N; ++jj) {
+      m[ii * N + jj] = 0; //vacuum
+    }
+  }
   return m;
 }
 
